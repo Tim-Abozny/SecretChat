@@ -1,0 +1,55 @@
+﻿<Window x:Class="courseProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:courseProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/background.png"/>
+        </Grid.Background>
+        <Button x:Name="StartServerButton" Click="StartServer" Content="start server" FontSize="22" FontWeight="Regular" UseLayoutRounding="True" HorizontalAlignment="Left" Margin="55,300,0,0" VerticalAlignment="Top" Height="39" Width="208" Background="White" Foreground="Black" MouseEnter="StartServerButton_MouseEnter" MouseLeave="StartServerButton_MouseLeave" FontFamily="Abel">
+            <Button.Effect>
+                <DropShadowEffect x:Name="StartServerEffects" ShadowDepth="0" BlurRadius="0"></DropShadowEffect>
+            </Button.Effect>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="StartClientButton" Click="StartClient" Content="start client" FontFamily="Abel" FontSize="22" FontWeight="Regular" UseLayoutRounding="True" HorizontalAlignment="Left" Margin="55,352,0,0" VerticalAlignment="Top" Height="39" Width="208" Background="White" Foreground="Black" MouseEnter="StartClientButton_MouseEnter" MouseLeave="StartClientButton_MouseLeave" >
+            <Button.Effect>
+                <DropShadowEffect x:Name="StartClientEffects" ShadowDepth="0" BlurRadius="0"></DropShadowEffect>
+            </Button.Effect>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBlock x:Name="Info" HorizontalAlignment="Left" Height="159" Margin="337,265,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="368" Foreground="White"/>
+    </Grid>
+</Window>
