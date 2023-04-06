@@ -50,6 +50,25 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <TextBlock x:Name="Info" HorizontalAlignment="Left" Height="159" Margin="337,265,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="368" Foreground="White"/>
+        <Button x:Name="ShutdownButton" Click="ShutdownServer" Content="shutdown it" FontFamily="Abel" FontSize="22" FontWeight="Regular" UseLayoutRounding="True" HorizontalAlignment="Left" Margin="521,352,0,0" VerticalAlignment="Top" Height="39" Width="208" Background="White" Foreground="Black" MouseEnter="ShutdownButton_MouseEnter" MouseLeave="ShutdownButton_MouseLeave">
+            <Button.Effect>
+                <DropShadowEffect x:Name="ShutdownButtonEffects" ShadowDepth="0" BlurRadius="0"></DropShadowEffect>
+            </Button.Effect>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

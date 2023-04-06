@@ -1,9 +1,9 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -18,11 +18,6 @@ namespace courseProject
         {
             InitializeComponent();
         }
-        private void StartServer(object sender, RoutedEventArgs e)
-        {
-            ServerWindow server = new ServerWindow();
-            server.Show();
-        }
         private void StartServerButton_MouseEnter(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < 20; i++)
@@ -32,7 +27,6 @@ namespace courseProject
             }
             StartServerEffects.Color = Color.FromRgb(92, 227, 80);
         }
-
         private void StartServerButton_MouseLeave(object sender, MouseEventArgs e)
         {
             for (int i = 20; i > 0; i--)
@@ -42,12 +36,57 @@ namespace courseProject
             }
             StartServerEffects.Color = Color.FromRgb(0, 0, 0);
         }
+        private void StartServer(object sender, RoutedEventArgs e)
+        {
+            string path = @"C:\AboznyStorage\study\courseWork\Server\bin\Debug\net6.0\Server.exe";
+            string processName = Path.GetFileNameWithoutExtension(path);
+            Process[] processes = Process.GetProcessesByName(processName);
+            if (processes.Length > 0)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    StartServerEffects.ShadowDepth = -i;
+                    StartServerEffects.BlurRadius = i;
+                }
+                StartServerEffects.Color = Color.FromRgb(92, 227, 80);
+            }
+            else
+            {
+                Thread thread = new Thread(() =>
+                {
+                    Process process = new Process();
+                    process.StartInfo.FileName = path;
+                    process.StartInfo.UseShellExecute = false;
+                    process.Start();
+                });
+
+                thread.Start();
+            }
+        }
         private void StartClient(object sender, RoutedEventArgs e)
         {
-            ClientWindow client = new ClientWindow();
-            client.Show();
-        }
+            string path = @"C:\AboznyStorage\study\courseWork\Client\bin\Debug\net6.0\Client.exe";
+            Thread thread = new Thread(() =>
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = path;
+                process.StartInfo.UseShellExecute = false;
+                process.Start();
+            });
 
+            thread.Start();
+        }
+        private void ShutdownServer(object sender, RoutedEventArgs e)
+        {
+            string processName = "Server";
+            Process[] processes = Process.GetProcessesByName(processName);
+
+            foreach (Process process in processes)
+            {
+                process.Kill();
+            }
+
+        }
         private void StartClientButton_MouseEnter(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < 20; i++)
@@ -66,6 +105,26 @@ namespace courseProject
                 StartClientEffects.BlurRadius = i;
             }
             StartClientEffects.Color = Color.FromRgb(0, 0, 0);
+        }
+
+        private void ShutdownButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                ShutdownButtonEffects.ShadowDepth = -i;
+                ShutdownButtonEffects.BlurRadius = i;
+            }
+            ShutdownButtonEffects.Color = Color.FromRgb(227, 80, 80);
+        }
+
+        private void ShutdownButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            for (int i = 20; i > 0; i--)
+            {
+                ShutdownButtonEffects.ShadowDepth = -i;
+                ShutdownButtonEffects.BlurRadius = i;
+            }
+            ShutdownButtonEffects.Color = Color.FromRgb(0, 0, 0);
         }
     }
 }
